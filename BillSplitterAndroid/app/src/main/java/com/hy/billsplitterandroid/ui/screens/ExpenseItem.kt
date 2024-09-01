@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,37 +17,32 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ExpenseItem(
     title: String,
-    valueDescription: String,
     value: String,
     date: String,
 ) {
-    Card(
-        onClick = { },
-        shape = MaterialTheme.shapes.medium,
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-    ) {
-        Row {
+    ListItem(
+        headlineContent = {
             Text(
                 text = title,
                 modifier = Modifier.padding(4.dp)
             )
-            Text(
-                text = valueDescription,
-                modifier = Modifier.padding(4.dp)
-            )
+        },
+        supportingContent = {
             Text(
                 text = date,
                 modifier = Modifier.padding(4.dp)
             )
-            Text(
-                text = value,
-                textAlign = TextAlign.Right,
-                modifier = Modifier.padding(4.dp)
-            )
+        },
+        trailingContent = {
+            Row {
+                Text(
+                    text = value,
+                    textAlign = TextAlign.Right,
+                    modifier = Modifier.padding(4.dp)
+                )
+            }
         }
-    }
+    )
 }
 
 @Composable
@@ -54,8 +50,7 @@ fun ExpenseItem(
 private fun ExpenseItemPreview() {
     ExpenseItem(
         title = "Groceries",
-        valueDescription = "You owe: ",
-        value = "$10.00",
+        value = "You owe: $10.00",
         date = "August 14, 2024",
     )
 }
